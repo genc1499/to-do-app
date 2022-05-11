@@ -16,7 +16,7 @@ toDoItem.addEventListener('submit', (event)=>{
         newLi.textContent=inputElement.value;
    
         // Add font awesome icon to list item
-        newLi.innerHTML= `<i class="fa-regular fa-square"></i>`;
+        newLi.innerHTML= '<i class="fa-regular fa-square"></i>';
         // Create an element for the task we have to add
         // Append that text element to the li
         // the textnode can jsut be added to the element as content
@@ -33,11 +33,28 @@ toDoItem.addEventListener('submit', (event)=>{
     }
 });
 
-const listItem=document.querySelector('li');
-listItem.addEventListener('click', ()=>{
-    console.log("to do has been checked ");
- 
+// You can only add eventlisteners to elements which exist in the DOM
+// at the point of code execution
+// You must use event propogation to the parent element that exists
+// on page load - in htis case the UL. STEPS AS FOLLOWS:
+
+const ul=document.querySelector('ul');
+ul.addEventListener('click', function(event){
+    if(event.target.localName==="i") {
+        // event.target.classList.toggle("fa-square-check");
+        event.target.classList.toggle("fa-solid");
+    }
+
+
+
 });
+
+
+// const listItem=document.querySelector('li');
+// listItem.addEventListener('click', ()=>{
+//     console.log("to do has been checked ");
+ 
+// });
 
 
 // grab the user's to do item from the form input
